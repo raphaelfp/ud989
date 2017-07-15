@@ -1,0 +1,31 @@
+{
+  "name": "ud989",
+  "version": "0.0.0",
+  "description": "This is my attempt to code along with Udacity - [JavaScript Design Patterns]",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael Fernandes <>",
+  "license": "MIT License",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.6.0",
+    "colors": "^1.1.0",
+    "css-loader": "^0.23.1",
+    "csswring": "^4.2.2",
+    "doiuse": "^2.3.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-loader": "^0.4.5",
+    "postcss-cssnext": "^2.5.2",
+    "postcss-loader": "^0.8.2",
+    "postcss-nested": "^1.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.8.11",
+    "webpack-dev-server": "^1.8.2",
+    "wordwrap": "1.0.0"
+  }
+}
