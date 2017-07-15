@@ -14,3 +14,10 @@ I already know a little bit of Javascript, but I didn't had a cool project to ti
 ## The course itself
 
 I'll try to code along with the course and make it so that every commit is a different quiz, with different folders for projects. So every one can track my development, step by step.
+
+## How to run
+
+* Clone the repository
+* Run npm install
+* Run npm install wepack webpack-dev-server -g
+* Run webpack-dev-server --inline --hot
