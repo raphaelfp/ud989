@@ -10,12 +10,29 @@
 <main class="container">
     <h1>Welcome to Cat Clicker</h1>
     <div class="row">
-        <div class="col-xs-12">
-            <ul id="cat-list">
-            </ul>
+        <div class="col-xs-12 col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Select a cat</h3>
+                </div>
+                <div class="panel-body">
+                    <ul id="cat-list" class="nav nav-pills nav-stacked"></ul>
+                </div>
+            </div>
+        </div>
+        <div id="display-area" class="col-xs-12 col-md-6">
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2 class="panel-title" id="cat-name"></h2>
+                </div>
+                <div class="panel-body">
+                    <img class="img-responsive" id="cat-clicker" src="" alt="">
+                    <p id="cat-counter"></p>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="display-area" class="row"></div>
 </main>
 
 <script
