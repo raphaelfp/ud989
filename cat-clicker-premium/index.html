@@ -10,7 +10,7 @@
 <main class="container">
     <h1>Welcome to Cat Clicker</h1>
     <div class="row">
-        <div class="col-xs-12 col-md-3">
+        <div class="col-xs-12 col-md-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Select a cat</h3>
@@ -18,6 +18,32 @@
                 <div class="panel-body">
                     <ul id="cat-list" class="nav nav-pills nav-stacked"></ul>
                 </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <button type="button" class="btn btn-primary" id="admin-button">Admin</button>
+                    <div class="btn-group" id="admin-button-group" role="group">
+                        <button type="button" class="btn btn-primary" id="admin-cancel">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="admin-save">Save</button>
+                    </div>
+                </div>
+                    <div class="panel-footer" id="admin-area">
+                        <form id="admin-form">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="admin-name-label">Cat Name</span>
+                                <input type="text" class="form-control" id="admin-name" aria-describedby="admin-name-label">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="admin-url-label">Cat URL</span>
+                                <input type="text" class="form-control" id="admin-src" aria-describedby="admin-url-label">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="admin-counter-label">Cat Counter</span>
+                                <input type="number" class="form-control" id="admin-counter" aria-describedby="admin-counter-label">
+                            </div>
+
+                        </form>
+                    </div>
             </div>
         </div>
         <div id="display-area" class="col-xs-12 col-md-6">

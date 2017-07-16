@@ -21,7 +21,7 @@ const helper = {
 
 const model = {
     currentCat: null,
-
+    isAdminAreaOpened: false,
     cats: new Array(
         new Cat('https://static.pexels.com/photos/60224/pexels-photo-60224.jpeg', 'Harold', helper.getNewCatId()),
         new Cat('https://static.pexels.com/photos/20787/pexels-photo.jpg', 'Mr. Potts', helper.getNewCatId()),
@@ -36,6 +36,7 @@ const octopus = {
         model.currentCat = model.cats[0];
         catListView.init();
         catView.init();
+        adminView.init();
     },
 
     getCats: function() {
@@ -53,6 +54,22 @@ const octopus = {
     incrementCounter: function() {
         model.currentCat.counter++;
         catView.render();
+    },
+
+    isAdminAreaOpened: function() {
+        return model.isAdminAreaOpened;
+    },
+
+    openAdminArea: function() {
+        model.isAdminAreaOpened = true;
+    },
+
+    closeAdminArea: function() {
+        model.isAdminAreaOpened = false;
+    },
+
+    saveCat: function(cat) {
+        model.currentCat = cat;
     }
 };
 
@@ -82,26 +99,79 @@ const catListView = {
         this.render();
     },
 
-    render: function() {
-        let cats = octopus.getCats();
-        const $catList = $('#cat-list');
+    render: function(renderButton = true) {
+        this.cats = octopus.getCats();
+        this.currentCat = octopus.getCurrentCat();
+        this.$catList = $('#cat-list');
+        this.$catList.empty();
 
-        $catList.empty();
-
-        for(const cat of cats) {
+        for(const cat of this.cats) {
             const $listElement = $('<li>').append($('<a>').html(cat.name).attr('href', '#'));
-            $listElement.find('a').on('click', function() {
+            $listElement.attr('id', `cat-${cat.id}`);
+            $listElement.find('a').on('click', () => {
                 octopus.setCurrentCat(cat);
-                for(const child of $catList.find('.active')) {
+                for(const child of this.$catList.find('.active')) {
                     console.log($(child).removeClass('active'));
                 }
                 $listElement.addClass('active');
                 catView.render();
+                adminView.render();
             });
-            $catList.append($listElement);
-            $catList.find(':first-child').addClass('active');
+            this.$catList.append($listElement);
+            if(renderButton)
+                this.$catList.find(':first-child').addClass('active');
         }
+        if(!renderButton)
+            $(`#cat-${this.currentCat.id}`).addClass('active');
+
     }
 };
+
+const adminView = {
+    init: function() {
+        this.$adminArea = $('#admin-area');
+        this.$adminButton = $('#admin-button');
+        this.$adminButtonGroup = $('#admin-button-group');
+        this.$adminCancel = $('#admin-cancel');
+        this.$adminSave = $('#admin-save');
+        this.$adminForm = $('#admin-form');
+        this.$adminName = $('#admin-name');
+        this.$adminSrc = $('#admin-src');
+        this.$adminCounter = $('#admin-counter');
+        
+        this.$adminButton.on('click', () => {
+            octopus.openAdminArea();
+            adminView.render();
+        });
+        this.$adminCancel.on('click', () => {
+            octopus.closeAdminArea();
+            adminView.render();
+        });
+        this.$adminSave.on('click', () => {
+            let cat = octopus.getCurrentCat();
+            cat.name = this.$adminName.val();
+            cat.src = this.$adminSrc.val();
+            cat.counter = Number(this.$adminCounter.val());
+            octopus.saveCat(cat);
+            octopus.closeAdminArea();
+            adminView.render();
+            catListView.render(false);
+            catView.render();
+        });
+
+        this.render();
+    },
+
+    render: function() {
+        let cat = octopus.getCurrentCat();
+        this.$adminName.val(cat.name);
+        this.$adminSrc.val(cat.src);
+        this.$adminCounter.val(`${cat.counter}`);
+
+        this.$adminButton.css('display', octopus.isAdminAreaOpened() ? 'none' : 'inherit');
+        this.$adminButtonGroup.css('display', octopus.isAdminAreaOpened() ? 'inherit' : 'none');
+        this.$adminArea.css('display', octopus.isAdminAreaOpened() ? 'inherit' : 'none');
+    }
+}
 
 octopus.init();
