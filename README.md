@@ -17,7 +17,9 @@ I'll try to code along with the course and make it so that every commit is a dif
 
 ## How to run
 
-* Clone the repository
-* Run npm install
-* Run npm install wepack webpack-dev-server -g
-* Run webpack-dev-server --inline --hot
+```
+> Clone the repository
+> Run npm install
+> Open the project folder
+> Run npm run
+```
